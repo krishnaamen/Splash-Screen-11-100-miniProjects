@@ -10,12 +10,37 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.splashScreen()
         return true
     }
+    private func splashScreen(){
+        let launchScreenVC = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
+        let rootVC = launchScreenVC.instantiateViewController(withIdentifier: "splashController")
+        self.window?.rootViewController = rootVC
+        self.window?.makeKeyAndVisible()
+        Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(dissmissSpashController), userInfo: nil, repeats: true)
+    
+    
+    
+    }
+    @objc func dissmissSpashController(){
+        let mainVC = UIStoryboard.init(name: "Main", bundle: nil)
+        let rootVC = mainVC.instantiateViewController(withIdentifier: "initController")
+        self.window?.rootViewController = rootVC
+        self.window?.makeKeyAndVisible()
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     // MARK: UISceneSession Lifecycle
 
